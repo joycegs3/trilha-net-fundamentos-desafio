@@ -15,7 +15,17 @@ namespace DesafioFundamentos.Models
         public void AdicionarVeiculo()
         {
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-            veiculos.Add(Console.ReadLine());
+
+            string placaAuxiliar = Console.ReadLine();
+
+            if (veiculos.Any(x => x.ToUpper() == placaAuxiliar.ToUpper()))
+            {
+                Console.WriteLine("A placa informada pertence a um carro já estacionado. Confira o número da placa e tente novamente.");
+            }
+            else
+            {
+                veiculos.Add(placaAuxiliar);
+            }
         }
 
         public void RemoverVeiculo()
@@ -34,7 +44,6 @@ namespace DesafioFundamentos.Models
                 decimal valorTotal = 0;
 
                 horas = Convert.ToInt32(Console.ReadLine());
-                // Convert.ToDecimal(horas);
                 valorTotal = precoInicial + precoPorHora * horas;
 
                 veiculos.Remove(placa);
@@ -43,7 +52,7 @@ namespace DesafioFundamentos.Models
             }
             else
             {
-                Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
+                Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente.");
             }
         }
 
